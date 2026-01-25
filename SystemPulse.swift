@@ -8,6 +8,19 @@ import IOKit
 import IOKit.ps
 import Metal
 
+// MARK: - Settings
+
+class Settings {
+    static let shared = Settings()
+
+    private let showDetailsKey = "showMenuBarDetails"
+
+    var showMenuBarDetails: Bool {
+        get { UserDefaults.standard.object(forKey: showDetailsKey) as? Bool ?? false }  // Default: icon only
+        set { UserDefaults.standard.set(newValue, forKey: showDetailsKey) }
+    }
+}
+
 // MARK: - Theme
 
 struct Theme {
@@ -118,7 +131,7 @@ class Metrics {
 
     var netIn: Double = 0, netOut: Double = 0
     var netTotalIn: UInt64 = 0, netTotalOut: UInt64 = 0
-    var localIP: String = "—", externalIP: String = "203.45.167.89"
+    var localIP: String = "—", externalIP: String = "Fetching..."
     var netHistory: [Double] = []
 
     var diskUsed: Double = 0, diskFree: UInt64 = 0, diskTotal: UInt64 = 0, diskName: String = "Macintosh HD"
@@ -162,7 +175,7 @@ class Monitor {
     func update() {
         updateCPU(); updateMemory(); updateNetwork(); updateDisk(); updateBattery(); updateSystem(); updateGPU(); updateSensors()
         // Skipping external IP fetch - using fake IP for screenshots
-        // if !externalIPFetched { externalIPFetched = true; fetchExternalIP() }
+        if !externalIPFetched { externalIPFetched = true; fetchExternalIP() }
         metrics.cpuHistory.append(metrics.cpu); if metrics.cpuHistory.count > 60 { metrics.cpuHistory.removeFirst() }
         metrics.memHistory.append(metrics.mem); if metrics.memHistory.count > 60 { metrics.memHistory.removeFirst() }
         metrics.gpuHistory.append(metrics.gpu); if metrics.gpuHistory.count > 60 { metrics.gpuHistory.removeFirst() }
@@ -325,23 +338,24 @@ enum CardType: String {
     func open() {
         switch self {
         case .cpu, .memory, .system:
-            if let url = URL(fileURLWithPath: "/System/Applications/Utilities/Activity Monitor.app") as URL? {
-                NSWorkspace.shared.open(url)
-            }
+            NSWorkspace.shared.open(URL(fileURLWithPath: "/System/Applications/Utilities/Activity Monitor.app"))
         case .gpu, .fans:
-            if let url = URL(fileURLWithPath: "/System/Applications/Utilities/System Information.app") as URL? {
-                NSWorkspace.shared.open(url)
-            }
+            NSWorkspace.shared.open(URL(fileURLWithPath: "/System/Applications/Utilities/System Information.app"))
         case .network:
-            if let url = URL(string: "x-apple.systempreferences:com.apple.Network-Settings.extension") {
-                NSWorkspace.shared.open(url)
+            // macOS Sonoma+ network settings - try multiple URL schemes
+            let urls = [
+                "x-apple.systempreferences:com.apple.wifi-settings-extension",
+                "x-apple.systempreferences:com.apple.Network-Settings.extension",
+                "x-apple.systempreferences:com.apple.preference.network"
+            ]
+            for urlString in urls {
+                if let url = URL(string: urlString), NSWorkspace.shared.open(url) { break }
             }
         case .disk:
-            if let url = URL(fileURLWithPath: "/System/Applications/Utilities/Disk Utility.app") as URL? {
-                NSWorkspace.shared.open(url)
-            }
+            NSWorkspace.shared.open(URL(fileURLWithPath: "/System/Applications/Utilities/Disk Utility.app"))
         case .battery:
-            if let url = URL(string: "x-apple.systempreferences:com.apple.preference.battery") {
+            // macOS Sonoma+ battery settings
+            if let url = URL(string: "x-apple.systempreferences:com.apple.Battery-Settings.extension") {
                 NSWorkspace.shared.open(url)
             }
         }
@@ -698,11 +712,49 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var timer: Timer?
     var menu: NSMenu!
     var eventMonitor: Any?
+    var showDetailsMenuItem: NSMenuItem!
+    var cpuMenuItem: NSMenuItem!
+    var memMenuItem: NSMenuItem!
+    var tempMenuItem: NSMenuItem!
+
+    func createMenuBarIcon() -> NSImage {
+        // Create a monitor/display icon (similar to Lucide's "monitor" icon)
+        let size = NSSize(width: 18, height: 18)
+        let image = NSImage(size: size, flipped: false) { rect in
+            NSColor.black.setStroke()
+
+            // Monitor screen (rounded rectangle)
+            let screenRect = NSRect(x: 2, y: 5, width: 14, height: 10)
+            let screen = NSBezierPath(roundedRect: screenRect, xRadius: 1.5, yRadius: 1.5)
+            screen.lineWidth = 1.5
+            screen.stroke()
+
+            // Stand neck
+            let neck = NSBezierPath()
+            neck.move(to: NSPoint(x: 9, y: 5))
+            neck.line(to: NSPoint(x: 9, y: 3))
+            neck.lineWidth = 1.5
+            neck.stroke()
+
+            // Stand base
+            let base = NSBezierPath()
+            base.move(to: NSPoint(x: 5, y: 3))
+            base.line(to: NSPoint(x: 13, y: 3))
+            base.lineWidth = 1.5
+            base.lineCapStyle = .round
+            base.stroke()
+
+            return true
+        }
+        image.isTemplate = true  // Adapts to menu bar color
+        return image
+    }
 
     func applicationDidFinishLaunching(_ n: Notification) {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         if let btn = statusItem.button {
-            btn.title = "⚡ Loading..."
+            btn.image = createMenuBarIcon()
+            btn.imagePosition = .imageLeading
             btn.sendAction(on: [.leftMouseUp, .rightMouseUp])
             btn.action = #selector(handleClick)
             btn.target = self
@@ -727,20 +779,92 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func setupMenu() {
         menu = NSMenu()
-        menu.addItem(NSMenuItem(title: "SystemPulse Pro", action: nil, keyEquivalent: ""))
+
+        // Header with current stats
+        let headerItem = NSMenuItem(title: "SystemPulse Pro", action: nil, keyEquivalent: "")
+        menu.addItem(headerItem)
+        menu.addItem(NSMenuItem.separator())
+
+        // Current readings (non-clickable)
+        cpuMenuItem = NSMenuItem(title: "CPU: ---%", action: nil, keyEquivalent: "")
+        memMenuItem = NSMenuItem(title: "Memory: ---%", action: nil, keyEquivalent: "")
+        tempMenuItem = NSMenuItem(title: "Temperature: ---", action: nil, keyEquivalent: "")
+        menu.addItem(cpuMenuItem)
+        menu.addItem(memMenuItem)
+        menu.addItem(tempMenuItem)
+
+        menu.addItem(NSMenuItem.separator())
+
+        // Settings toggle for menu bar display
+        showDetailsMenuItem = NSMenuItem(title: "Show CPU/Memory in menu bar", action: #selector(toggleMenuBarDetails), keyEquivalent: "")
+        showDetailsMenuItem.target = self
+        showDetailsMenuItem.state = Settings.shared.showMenuBarDetails ? .on : .off
+        menu.addItem(showDetailsMenuItem)
+
+        menu.addItem(NSMenuItem.separator())
+
+        // About
+        let aboutItem = NSMenuItem(title: "About SystemPulse", action: #selector(showAbout), keyEquivalent: "")
+        aboutItem.target = self
+        menu.addItem(aboutItem)
+
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
     }
 
+    @objc func showAbout() {
+        let alert = NSAlert()
+        alert.messageText = "SystemPulse Pro"
+        alert.informativeText = "A lightweight macOS menu bar app for real-time system monitoring.\n\n© 2026 Dr. Gorkem Cetin\n\nhttps://github.com/bluewave-labs/systempulse"
+        alert.alertStyle = .informational
+        alert.addButton(withTitle: "OK")
+        alert.addButton(withTitle: "Open Repository")
+
+        let response = alert.runModal()
+        if response == .alertSecondButtonReturn {
+            if let url = URL(string: "https://github.com/bluewave-labs/systempulse") {
+                NSWorkspace.shared.open(url)
+            }
+        }
+    }
+
+    @objc func toggleMenuBarDetails() {
+        Settings.shared.showMenuBarDetails.toggle()
+        showDetailsMenuItem.state = Settings.shared.showMenuBarDetails ? .on : .off
+        updateMenuBarDisplay()
+    }
+
+    func updateMenuBarDisplay() {
+        let m = monitor.metrics
+
+        // Update menu bar
+        if Settings.shared.showMenuBarDetails {
+            var menuText = " C:\(Int(m.cpu))% M:\(Int(m.mem))%"
+            if m.cpuTemp > 0 { menuText += " \(Int(m.cpuTemp))°" }
+            statusItem.button?.title = menuText
+        } else {
+            statusItem.button?.title = ""
+        }
+
+        // Update menu items
+        cpuMenuItem?.title = String(format: "CPU: %.1f%%", m.cpu)
+        memMenuItem?.title = String(format: "Memory: %.1f%%", m.mem)
+        if m.cpuTemp > 0 {
+            tempMenuItem?.title = String(format: "CPU Temp: %.0f°C", m.cpuTemp)
+            if m.gpuTemp > 0 {
+                tempMenuItem?.title = String(format: "Temp: CPU %.0f°C / GPU %.0f°C", m.cpuTemp, m.gpuTemp)
+            }
+        } else {
+            tempMenuItem?.title = "Temperature: N/A"
+        }
+    }
+
     func update() {
         monitor.update()
-        let m = monitor.metrics
-        var menuText = "⚡ C:\(Int(m.cpu))% M:\(Int(m.mem))%"
-        if m.cpuTemp > 0 { menuText += " \(Int(m.cpuTemp))°" }
-        statusItem.button?.title = menuText
+        updateMenuBarDisplay()
 
         if panel.isVisible {
-            let hasFans = !m.fanSpeed.isEmpty
+            let hasFans = !monitor.metrics.fanSpeed.isEmpty
             let newHeight: CGFloat = hasFans ? 752 : 696
             if panel.frame.height != newHeight {
                 var frame = panel.frame

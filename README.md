@@ -1,5 +1,7 @@
 # SystemPulse
 
+🇹🇷 [Türkçe](README_TR.md)
+
 A lightweight, native macOS menu bar app that displays real-time system metrics with beautiful mini graphs.
 
 <img width="397" height="715" alt="image" src="https://github.com/user-attachments/assets/6868a0ac-1d01-45aa-84d7-8d21dc0daa6b" />
@@ -88,10 +90,41 @@ If you want SystemPulse to appear as a proper macOS app:
    mv SystemPulse.app /Applications/
    ```
 
-### Launch at login (optional)
+### Option 3: Run with Automator (recommended)
+
+This method allows SystemPulse to run independently of Terminal, so it keeps running even after you close Terminal.
+
+1. Build SystemPulse first (see Option 1 above)
+
+2. Open **Automator** (search for it in Spotlight)
+
+3. Click **New Document** and select **Application**
+
+4. In the search bar, type "Run Shell Script" and drag it to the workflow area
+
+5. Replace the default text with the full path to your SystemPulse binary:
+   ```bash
+   /path/to/systempulse/SystemPulse
+   ```
+   For example, if you cloned to your home folder:
+   ```bash
+   ~/systempulse/SystemPulse
+   ```
+
+6. Go to **File** > **Save** and save it as "SystemPulse" in your Applications folder
+
+7. Double-click the saved Automator app to run SystemPulse
+
+**Tip**: You can now add this Automator app to your Login Items to start SystemPulse automatically at boot:
+1. Open **System Settings** > **General** > **Login Items**
+2. Click **+** and select your SystemPulse Automator app
+
+### Launch at login (alternative)
+
+If you created an app bundle (Option 2), you can add it directly to Login Items:
 
 1. Open **System Settings** > **General** > **Login Items**
-2. Click **+** and add SystemPulse
+2. Click **+** and add SystemPulse.app
 
 ## Usage
 
