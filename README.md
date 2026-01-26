@@ -30,10 +30,12 @@ A lightweight, native macOS menu bar app that displays real-time system metrics 
 
 ## Requirements
 
-- macOS 14.0 (Sonoma) or later
+- macOS 12.0 (Monterey) or later
 - Apple Silicon or Intel Mac
 
 ## Installation
+
+> **About notarization:** SystemPulse is not currently notarized by Apple. Notarization is Apple's security process that scans apps for malware before distribution. Without it, macOS shows a warning on first launch. This is safe to bypass for open-source apps like SystemPulse where you can inspect the code yourself. Notarization is planned for a future release.
 
 ### Option 1: Homebrew (recommended)
 
@@ -42,13 +44,13 @@ brew tap bluewave-labs/systempulse
 brew install --cask systempulse
 ```
 
-> **Note:** SystemPulse is not notarized. On first launch, right-click the app → Open → confirm. Or run: `xattr -cr /Applications/SystemPulse.app`
+On first launch, right-click the app → Open → confirm. Or run: `xattr -cr /Applications/SystemPulse.app`
 
 ### Option 2: Download DMG
 
 1. Download the latest DMG from [Releases](https://github.com/bluewave-labs/systempulse/releases)
 2. Open the DMG and drag SystemPulse to Applications
-3. On first launch, right-click → Open → confirm
+3. On first launch, right-click → Open → confirm (see note above about notarization)
 
 ### Option 3: Build from source
 
