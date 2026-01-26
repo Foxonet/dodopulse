@@ -670,9 +670,9 @@ class Monitor {
 
     private func updateDisk() {
         let url = URL(fileURLWithPath: "/")
-        guard let vals = try? url.resourceValues(forKeys: [.volumeTotalCapacityKey, .volumeAvailableCapacityForImportantUsageKey, .volumeNameKey]) else { return }
+        guard let vals = try? url.resourceValues(forKeys: [.volumeTotalCapacityKey, .volumeAvailableCapacityKey, .volumeNameKey]) else { return }
         metrics.diskTotal = UInt64(vals.volumeTotalCapacity ?? 0)
-        metrics.diskFree = UInt64(vals.volumeAvailableCapacityForImportantUsage ?? 0)
+        metrics.diskFree = UInt64(vals.volumeAvailableCapacity ?? 0)
         metrics.diskName = vals.volumeName ?? "Macintosh HD"
         if metrics.diskTotal > 0 { metrics.diskUsed = Double(metrics.diskTotal - metrics.diskFree) / Double(metrics.diskTotal) * 100 }
     }
