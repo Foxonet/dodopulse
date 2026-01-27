@@ -27,6 +27,25 @@ Eine leichte, native macOS-Menüleisten-App, die Echtzeit-Systemmetriken mit sch
 - **Klicken** Sie auf eine Karte, um die entsprechende System-App zu öffnen (Aktivitätsanzeige, Festplattendienstprogramm, Systemeinstellungen usw.)
 - **Rechtsklicken** Sie auf das Menüleistensymbol für ein Schnellmenü mit Einstellungen und Sprachauswahl
 
+## Vergleich mit kostenpflichtigen Alternativen
+
+| Funktion | DodoPulse | iStat Menus | TG Pro | Sensei |
+|----------|-----------|-------------|--------|--------|
+| **Preis** | Kostenlos | ~$14 | $10 | $29 |
+| **CPU-Überwachung** | ✅ | ✅ | ✅ | ✅ |
+| **GPU-Überwachung** | ✅ | ✅ | ✅ | ✅ |
+| **Speicherüberwachung** | ✅ | ✅ | ❌ | ✅ |
+| **Netzwerküberwachung** | ✅ Multi-Interface | ✅ Pro App | ❌ | ❌ |
+| **Festplattenüberwachung** | ✅ | ✅ | ✅ | ✅ |
+| **Batterieüberwachung** | ✅ | ✅ + Bluetooth | ✅ | ✅ |
+| **Lüftersteuerung** | ❌ | ✅ | ✅ | ✅ |
+| **Wetter** | ❌ | ✅ | ❌ | ❌ |
+| **Optimierungstools** | ❌ | ❌ | ❌ | ✅ |
+| **Open Source** | ✅ | ❌ | ❌ | ❌ |
+| **Einzelne Datei** | ✅ (~2000 Zeilen) | ❌ | ❌ | ❌ |
+
+**Warum DodoPulse?** Kostenlos, Open Source, leichtgewichtig (~1-2% CPU), datenschutzorientiert (keine Analytik) und einfach zu prüfen/modifizieren.
+
 ## Anforderungen
 
 - macOS 12.0 (Monterey) oder höher
@@ -159,25 +178,6 @@ DodoPulse verwendet native macOS-APIs für genaue Metriken:
 - **Netzwerk**: `getifaddrs()` für Schnittstellenstatistiken
 - **Batterie**: `IOPSCopyPowerSourcesInfo()` von IOKit
 - **Temperatur/Lüfter**: SMC (System Management Controller) über IOKit
-
-## Vergleich mit kostenpflichtigen Alternativen
-
-| Funktion | DodoPulse | iStat Menus | TG Pro | Sensei |
-|----------|-----------|-------------|--------|--------|
-| **Preis** | Kostenlos | ~$14 | $10 | $29 |
-| **CPU-Überwachung** | ✓ | ✓ | ✓ | ✓ |
-| **GPU-Überwachung** | ✓ | ✓ | ✓ | ✓ |
-| **Speicherüberwachung** | ✓ | ✓ | ✗ | ✓ |
-| **Netzwerküberwachung** | ✓ Multi-Interface | ✓ Pro App | ✗ | ✗ |
-| **Festplattenüberwachung** | ✓ | ✓ | ✓ | ✓ |
-| **Batterieüberwachung** | ✓ | ✓ + Bluetooth | ✓ | ✓ |
-| **Lüftersteuerung** | ✗ | ✓ | ✓ | ✓ |
-| **Wetter** | ✗ | ✓ | ✗ | ✗ |
-| **Optimierungstools** | ✗ | ✗ | ✗ | ✓ |
-| **Open Source** | ✓ | ✗ | ✗ | ✗ |
-| **Einzelne Datei** | ✓ (~2000 Zeilen) | ✗ | ✗ | ✗ |
-
-**Warum DodoPulse?** Kostenlos, Open Source, leichtgewichtig (~1-2% CPU), datenschutzorientiert (keine Analytik) und einfach zu prüfen/modifizieren.
 
 ## Mitwirken
 

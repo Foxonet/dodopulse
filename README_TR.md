@@ -27,6 +27,25 @@ Gerçek zamanlı sistem metriklerini güzel mini grafiklerle gösteren hafif, ye
 - İlgili sistem uygulamasını açmak için herhangi bir karta **tıklayın** (Etkinlik Monitörü, Disk İzlencesi, Sistem Ayarları vb.)
 - Ayarlar ve dil seçimi olan hızlı menü için menü çubuğu simgesine **sağ tıklayın**
 
+## Ücretli Alternatiflerle Karşılaştırma
+
+| Özellik | DodoPulse | iStat Menus | TG Pro | Sensei |
+|---------|-----------|-------------|--------|--------|
+| **Fiyat** | Ücretsiz | ~$14 | $10 | $29 |
+| **CPU izleme** | ✅ | ✅ | ✅ | ✅ |
+| **GPU izleme** | ✅ | ✅ | ✅ | ✅ |
+| **Bellek izleme** | ✅ | ✅ | ❌ | ✅ |
+| **Ağ izleme** | ✅ Çoklu arayüz | ✅ Uygulama bazlı | ❌ | ❌ |
+| **Disk izleme** | ✅ | ✅ | ✅ | ✅ |
+| **Pil izleme** | ✅ | ✅ + Bluetooth | ✅ | ✅ |
+| **Fan kontrolü** | ❌ | ✅ | ✅ | ✅ |
+| **Hava durumu** | ❌ | ✅ | ❌ | ❌ |
+| **Optimizasyon araçları** | ❌ | ❌ | ❌ | ✅ |
+| **Açık kaynak** | ✅ | ❌ | ❌ | ❌ |
+| **Tek dosya** | ✅ (~2000 satır) | ❌ | ❌ | ❌ |
+
+**Neden DodoPulse?** Ücretsiz, açık kaynak, hafif (~%1-2 CPU), gizlilik odaklı (analitik yok) ve denetlemesi/değiştirmesi kolay.
+
 ## Gereksinimler
 
 - macOS 12.0 (Monterey) veya üzeri
@@ -159,25 +178,6 @@ DodoPulse, doğru metrikler için yerli macOS API'lerini kullanır:
 - **Ağ**: Arayüz istatistikleri için `getifaddrs()`
 - **Pil**: IOKit'ten `IOPSCopyPowerSourcesInfo()`
 - **Sıcaklık/Fanlar**: IOKit aracılığıyla SMC (Sistem Yönetim Denetleyicisi)
-
-## Ücretli Alternatiflerle Karşılaştırma
-
-| Özellik | DodoPulse | iStat Menus | TG Pro | Sensei |
-|---------|-----------|-------------|--------|--------|
-| **Fiyat** | Ücretsiz | ~$14 | $10 | $29 |
-| **CPU izleme** | ✓ | ✓ | ✓ | ✓ |
-| **GPU izleme** | ✓ | ✓ | ✓ | ✓ |
-| **Bellek izleme** | ✓ | ✓ | ✗ | ✓ |
-| **Ağ izleme** | ✓ Çoklu arayüz | ✓ Uygulama bazlı | ✗ | ✗ |
-| **Disk izleme** | ✓ | ✓ | ✓ | ✓ |
-| **Pil izleme** | ✓ | ✓ + Bluetooth | ✓ | ✓ |
-| **Fan kontrolü** | ✗ | ✓ | ✓ | ✓ |
-| **Hava durumu** | ✗ | ✓ | ✗ | ✗ |
-| **Optimizasyon araçları** | ✗ | ✗ | ✗ | ✓ |
-| **Açık kaynak** | ✓ | ✗ | ✗ | ✗ |
-| **Tek dosya** | ✓ (~2000 satır) | ✗ | ✗ | ✗ |
-
-**Neden DodoPulse?** Ücretsiz, açık kaynak, hafif (~%1-2 CPU), gizlilik odaklı (analitik yok) ve denetlemesi/değiştirmesi kolay.
 
 ## Katkıda Bulunma
 

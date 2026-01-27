@@ -27,6 +27,25 @@ Une application légère et native pour la barre de menus macOS qui affiche les 
 - **Cliquez** sur n'importe quelle carte pour ouvrir l'application système correspondante (Moniteur d'activité, Utilitaire de disque, Préférences Système, etc.)
 - **Clic droit** sur l'icône de la barre de menus pour un menu rapide avec paramètres et sélection de langue
 
+## Comparaison avec les alternatives payantes
+
+| Fonctionnalité | DodoPulse | iStat Menus | TG Pro | Sensei |
+|----------------|-----------|-------------|--------|--------|
+| **Prix** | Gratuit | ~$14 | $10 | $29 |
+| **Surveillance CPU** | ✅ | ✅ | ✅ | ✅ |
+| **Surveillance GPU** | ✅ | ✅ | ✅ | ✅ |
+| **Surveillance mémoire** | ✅ | ✅ | ❌ | ✅ |
+| **Surveillance réseau** | ✅ Multi-interface | ✅ Par app | ❌ | ❌ |
+| **Surveillance disque** | ✅ | ✅ | ✅ | ✅ |
+| **Surveillance batterie** | ✅ | ✅ + Bluetooth | ✅ | ✅ |
+| **Contrôle ventilateurs** | ❌ | ✅ | ✅ | ✅ |
+| **Météo** | ❌ | ✅ | ❌ | ❌ |
+| **Outils d'optimisation** | ❌ | ❌ | ❌ | ✅ |
+| **Open source** | ✅ | ❌ | ❌ | ❌ |
+| **Fichier unique** | ✅ (~2000 lignes) | ❌ | ❌ | ❌ |
+
+**Pourquoi DodoPulse ?** Gratuit, open source, léger (~1-2% CPU), axé sur la confidentialité (pas d'analytique) et facile à auditer/modifier.
+
 ## Configuration requise
 
 - macOS 12.0 (Monterey) ou ultérieur
@@ -159,25 +178,6 @@ DodoPulse utilise les APIs natives macOS pour des métriques précises :
 - **Réseau** : `getifaddrs()` pour les statistiques d'interface
 - **Batterie** : `IOPSCopyPowerSourcesInfo()` depuis IOKit
 - **Température/Ventilateurs** : SMC (System Management Controller) via IOKit
-
-## Comparaison avec les alternatives payantes
-
-| Fonctionnalité | DodoPulse | iStat Menus | TG Pro | Sensei |
-|----------------|-----------|-------------|--------|--------|
-| **Prix** | Gratuit | ~$14 | $10 | $29 |
-| **Surveillance CPU** | ✓ | ✓ | ✓ | ✓ |
-| **Surveillance GPU** | ✓ | ✓ | ✓ | ✓ |
-| **Surveillance mémoire** | ✓ | ✓ | ✗ | ✓ |
-| **Surveillance réseau** | ✓ Multi-interface | ✓ Par app | ✗ | ✗ |
-| **Surveillance disque** | ✓ | ✓ | ✓ | ✓ |
-| **Surveillance batterie** | ✓ | ✓ + Bluetooth | ✓ | ✓ |
-| **Contrôle ventilateurs** | ✗ | ✓ | ✓ | ✓ |
-| **Météo** | ✗ | ✓ | ✗ | ✗ |
-| **Outils d'optimisation** | ✗ | ✗ | ✗ | ✓ |
-| **Open source** | ✓ | ✗ | ✗ | ✗ |
-| **Fichier unique** | ✓ (~2000 lignes) | ✗ | ✗ | ✗ |
-
-**Pourquoi DodoPulse ?** Gratuit, open source, léger (~1-2% CPU), axé sur la confidentialité (pas d'analytique) et facile à auditer/modifier.
 
 ## Contribuer
 

@@ -28,6 +28,25 @@ A lightweight, native macOS menu bar app that displays real-time system metrics 
 - **Click** any card to open the corresponding system app (Activity Monitor, Disk Utility, System Settings, etc.)
 - **Right-click** the menu bar icon for a quick menu with settings and language selection
 
+## Comparison with Paid Alternatives
+
+| Feature | DodoPulse | iStat Menus | TG Pro | Sensei |
+|---------|-----------|-------------|--------|--------|
+| **Price** | Free | ~$14 | $10 | $29 |
+| **CPU monitoring** | ✅ | ✅ | ✅ | ✅ |
+| **GPU monitoring** | ✅ | ✅ | ✅ | ✅ |
+| **Memory monitoring** | ✅ | ✅ | ❌ | ✅ |
+| **Network monitoring** | ✅ Multi-interface | ✅ Per-app | ❌ | ❌ |
+| **Disk monitoring** | ✅ | ✅ | ✅ | ✅ |
+| **Battery monitoring** | ✅ | ✅ + Bluetooth | ✅ | ✅ |
+| **Fan control** | ❌ | ✅ | ✅ | ✅ |
+| **Weather** | ❌ | ✅ | ❌ | ❌ |
+| **Optimization tools** | ❌ | ❌ | ❌ | ✅ |
+| **Open source** | ✅ | ❌ | ❌ | ❌ |
+| **Single file** | ✅ (~2000 lines) | ❌ | ❌ | ❌ |
+
+**Why DodoPulse?** Free, open source, lightweight (~1-2% CPU), privacy-focused (no analytics), and easy to audit/modify.
+
 ## Requirements
 
 - macOS 12.0 (Monterey) or later
@@ -160,25 +179,6 @@ DodoPulse uses native macOS APIs for accurate metrics:
 - **Network**: `getifaddrs()` for interface statistics
 - **Battery**: `IOPSCopyPowerSourcesInfo()` from IOKit
 - **Temperature/Fans**: SMC (System Management Controller) via IOKit
-
-## Comparison with Paid Alternatives
-
-| Feature | DodoPulse | iStat Menus | TG Pro | Sensei |
-|---------|-----------|-------------|--------|--------|
-| **Price** | Free | ~$14 | $10 | $29 |
-| **CPU monitoring** | ✓ | ✓ | ✓ | ✓ |
-| **GPU monitoring** | ✓ | ✓ | ✓ | ✓ |
-| **Memory monitoring** | ✓ | ✓ | ✗ | ✓ |
-| **Network monitoring** | ✓ Multi-interface | ✓ Per-app | ✗ | ✗ |
-| **Disk monitoring** | ✓ | ✓ | ✓ | ✓ |
-| **Battery monitoring** | ✓ | ✓ + Bluetooth | ✓ | ✓ |
-| **Fan control** | ✗ | ✓ | ✓ | ✓ |
-| **Weather** | ✗ | ✓ | ✗ | ✗ |
-| **Optimization tools** | ✗ | ✗ | ✗ | ✓ |
-| **Open source** | ✓ | ✗ | ✗ | ✗ |
-| **Single file** | ✓ (~2000 lines) | ✗ | ✗ | ✗ |
-
-**Why DodoPulse?** Free, open source, lightweight (~1-2% CPU), privacy-focused (no analytics), and easy to audit/modify.
 
 ## Contributing
 
