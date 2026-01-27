@@ -1,4 +1,4 @@
-# SystemPulse
+# DodoPulse
 
 🌍 **7 dilde yerelleştirildi:** 🇺🇸 [English](README.md) | 🇹🇷 Türkçe | 🇩🇪 [Deutsch](README_DE.md) | 🇫🇷 [Français](README_FR.md) | 🇪🇸 [Español](README_ES.md) | 🇯🇵 [日本語](README_JA.md) | 🇨🇳 [中文](README_ZH.md)
 
@@ -34,63 +34,63 @@ Gerçek zamanlı sistem metriklerini güzel mini grafiklerle gösteren hafif, ye
 
 ## Kurulum
 
-> **Notarizasyon hakkında:** SystemPulse şu anda Apple tarafından notarize edilmemiştir. Notarizasyon, Apple'ın uygulamaları dağıtımdan önce kötü amaçlı yazılım için tarayan güvenlik sürecidir. Bu olmadan, macOS "uygulama hasarlı" veya "açılamıyor" gibi uyarılar gösterebilir. Kodu kendiniz inceleyebileceğiniz SystemPulse gibi açık kaynak uygulamalar için bunu atlamak güvenlidir. **Çözüm:** Terminal'de `xattr -cr /Applications/SystemPulse.app` komutunu çalıştırın, ardından uygulamayı açın. Notarizasyon gelecek bir sürüm için planlanmaktadır.
+> **Notarizasyon hakkında:** DodoPulse şu anda Apple tarafından notarize edilmemiştir. Notarizasyon, Apple'ın uygulamaları dağıtımdan önce kötü amaçlı yazılım için tarayan güvenlik sürecidir. Bu olmadan, macOS "uygulama hasarlı" veya "açılamıyor" gibi uyarılar gösterebilir. Kodu kendiniz inceleyebileceğiniz DodoPulse gibi açık kaynak uygulamalar için bunu atlamak güvenlidir. **Çözüm:** Terminal'de `xattr -cr /Applications/DodoPulse.app` komutunu çalıştırın, ardından uygulamayı açın. Notarizasyon gelecek bir sürüm için planlanmaktadır.
 
 ### Seçenek 1: Homebrew (önerilen)
 
 ```bash
-brew tap bluewave-labs/systempulse
-brew install --cask systempulse
+brew tap bluewave-labs/dodopulse
+brew install --cask dodopulse
 ```
 
-İlk açılışta, uygulamaya sağ tıklayın → Aç → onaylayın. Veya çalıştırın: `xattr -cr /Applications/SystemPulse.app`
+İlk açılışta, uygulamaya sağ tıklayın → Aç → onaylayın. Veya çalıştırın: `xattr -cr /Applications/DodoPulse.app`
 
 ### Seçenek 2: DMG İndir
 
-1. [Releases](https://github.com/bluewave-labs/systempulse/releases) sayfasından en son DMG'yi indirin
-2. DMG'yi açın ve SystemPulse'ı Uygulamalar'a sürükleyin
+1. [Releases](https://github.com/bluewave-labs/dodopulse/releases) sayfasından en son DMG'yi indirin
+2. DMG'yi açın ve DodoPulse'ı Uygulamalar'a sürükleyin
 3. İlk açılışta, sağ tıklayın → Aç → onaylayın (yukarıdaki notarizasyon notuna bakın)
 
 ### Seçenek 3: Kaynaktan derleme
 
 1. Depoyu klonlayın:
    ```bash
-   git clone https://github.com/bluewave-labs/systempulse.git
-   cd systempulse
+   git clone https://github.com/bluewave-labs/dodopulse.git
+   cd dodopulse
    ```
 
 2. Uygulamayı derleyin:
    ```bash
-   swiftc -O -o SystemPulse SystemPulse.swift -framework Cocoa -framework IOKit -framework Metal
+   swiftc -O -o DodoPulse DodoPulse.swift -framework Cocoa -framework IOKit -framework Metal
    ```
 
 3. Çalıştırın:
    ```bash
-   ./SystemPulse
+   ./DodoPulse
    ```
 
 ### Seçenek 4: Uygulama paketi oluşturma (isteğe bağlı)
 
-SystemPulse'ın düzgün bir macOS uygulaması olarak görünmesini istiyorsanız:
+DodoPulse'ın düzgün bir macOS uygulaması olarak görünmesini istiyorsanız:
 
 1. Uygulama yapısını oluşturun:
    ```bash
-   mkdir -p SystemPulse.app/Contents/MacOS
-   cp SystemPulse SystemPulse.app/Contents/MacOS/
+   mkdir -p DodoPulse.app/Contents/MacOS
+   cp DodoPulse DodoPulse.app/Contents/MacOS/
    ```
 
-2. `SystemPulse.app/Contents/Info.plist` dosyasını oluşturun:
+2. `DodoPulse.app/Contents/Info.plist` dosyasını oluşturun:
    ```xml
    <?xml version="1.0" encoding="UTF-8"?>
    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
    <plist version="1.0">
    <dict>
        <key>CFBundleExecutable</key>
-       <string>SystemPulse</string>
+       <string>DodoPulse</string>
        <key>CFBundleIdentifier</key>
-       <string>com.bluewave.systempulse</string>
+       <string>com.bluewave.dodopulse</string>
        <key>CFBundleName</key>
-       <string>SystemPulse</string>
+       <string>DodoPulse</string>
        <key>CFBundleVersion</key>
        <string>1.0</string>
        <key>LSMinimumSystemVersion</key>
@@ -103,14 +103,14 @@ SystemPulse'ın düzgün bir macOS uygulaması olarak görünmesini istiyorsanı
 
 3. Uygulamalar klasörüne taşıyın (isteğe bağlı):
    ```bash
-   mv SystemPulse.app /Applications/
+   mv DodoPulse.app /Applications/
    ```
 
 ### Seçenek 5: Automator ile çalıştırma
 
-Bu yöntem, SystemPulse'ın Terminal'den bağımsız çalışmasını sağlar, böylece Terminal'i kapattıktan sonra bile çalışmaya devam eder.
+Bu yöntem, DodoPulse'ın Terminal'den bağımsız çalışmasını sağlar, böylece Terminal'i kapattıktan sonra bile çalışmaya devam eder.
 
-1. Önce SystemPulse'ı derleyin (yukarıdaki Seçenek 1'e bakın)
+1. Önce DodoPulse'ı derleyin (yukarıdaki Seçenek 1'e bakın)
 
 2. **Automator**'ı açın (Spotlight'ta arayın)
 
@@ -118,26 +118,26 @@ Bu yöntem, SystemPulse'ın Terminal'den bağımsız çalışmasını sağlar, b
 
 4. Arama çubuğuna "Kabuk Betiği Çalıştır" yazın ve iş akışı alanına sürükleyin
 
-5. Varsayılan metni SystemPulse binary'nizin tam yolu ile değiştirin:
+5. Varsayılan metni DodoPulse binary'nizin tam yolu ile değiştirin:
    ```bash
-   /path/to/systempulse/SystemPulse
+   /path/to/dodopulse/DodoPulse
    ```
    Örneğin, ana klasörünüze klonladıysanız:
    ```bash
-   ~/systempulse/SystemPulse
+   ~/dodopulse/DodoPulse
    ```
 
-6. **Dosya** > **Kaydet**'e gidin ve Uygulamalar klasörünüze "SystemPulse" olarak kaydedin
+6. **Dosya** > **Kaydet**'e gidin ve Uygulamalar klasörünüze "DodoPulse" olarak kaydedin
 
-7. SystemPulse'ı çalıştırmak için kaydedilen Automator uygulamasına çift tıklayın
+7. DodoPulse'ı çalıştırmak için kaydedilen Automator uygulamasına çift tıklayın
 
-**İpucu:** SystemPulse'ı açılışta otomatik başlatmak için Giriş Öğelerinize ekleyebilirsiniz:
+**İpucu:** DodoPulse'ı açılışta otomatik başlatmak için Giriş Öğelerinize ekleyebilirsiniz:
 1. **Sistem Ayarları** > **Genel** > **Giriş Öğeleri**'ni açın
-2. **+**'ya tıklayın ve SystemPulse Automator uygulamanızı seçin
+2. **+**'ya tıklayın ve DodoPulse Automator uygulamanızı seçin
 
 ## Kullanım
 
-Çalıştırıldığında, SystemPulse menü çubuğunuzda CPU ve bellek kullanımını gösteren bir simge olarak görünür.
+Çalıştırıldığında, DodoPulse menü çubuğunuzda CPU ve bellek kullanımını gösteren bir simge olarak görünür.
 
 - Ayrıntılı paneli açmak için menü çubuğu öğesine **sol tıklayın**
 - Ayarlar, dil seçimi ve çıkış seçeneği olan hızlı menü için **sağ tıklayın**
@@ -145,13 +145,13 @@ Bu yöntem, SystemPulse'ın Terminal'den bağımsız çalışmasını sağlar, b
 
 ### Dil değiştirme
 
-1. Menü çubuğundaki SystemPulse simgesine sağ tıklayın
+1. Menü çubuğundaki DodoPulse simgesine sağ tıklayın
 2. Menüden **Dil**'i seçin
 3. Alt menüden tercih ettiğiniz dili seçin
 
 ## Teknik detaylar
 
-SystemPulse, doğru metrikler için yerli macOS API'lerini kullanır:
+DodoPulse, doğru metrikler için yerli macOS API'lerini kullanır:
 
 - **CPU**: `host_processor_info()` Mach API
 - **Bellek**: `host_statistics64()` Mach API
@@ -166,7 +166,7 @@ Katkılarınızı bekliyoruz! Lütfen bir pull request göndermekten çekinmeyin
 
 ### Çeviri ekleme
 
-SystemPulse yeni dillerin kolayca eklenmesini destekler. Yeni bir dil eklemek için:
+DodoPulse yeni dillerin kolayca eklenmesini destekler. Yeni bir dil eklemek için:
 
 1. `Language` enum'una yeni bir case ekleyin
 2. `L10n` struct'ındaki tüm stringler için çeviri ekleyin

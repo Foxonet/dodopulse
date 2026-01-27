@@ -1,7 +1,7 @@
 #!/usr/bin/env swift
 
-// SystemPulse - macOS Menu Bar System Monitor
-// Build: swiftc -O -o SystemPulse SystemPulse.swift -framework Cocoa -framework IOKit -framework Metal
+// DodoPulse - macOS Menu Bar System Monitor
+// Build: swiftc -O -o DodoPulse DodoPulse.swift -framework Cocoa -framework IOKit -framework Metal
 
 import Cocoa
 import IOKit
@@ -74,7 +74,7 @@ struct L10n {
     static var notInUse: String { tr("Not in use", "Kullanılmıyor", "Nicht verwendet", "Non utilisé", "No en uso", "未使用", "未使用") }
     static var showCPUMemory: String { tr("Show CPU/Memory in menu bar", "Menü çubuğunda CPU/Bellek göster", "CPU/Speicher in Menüleiste anzeigen", "Afficher CPU/Mémoire dans la barre de menu", "Mostrar CPU/Memoria en barra de menú", "メニューバーにCPU/メモリを表示", "在菜单栏显示CPU/内存") }
     static var language: String { tr("Language", "Dil", "Sprache", "Langue", "Idioma", "言語", "语言") }
-    static var about: String { tr("About SystemPulse", "SystemPulse Hakkında", "Über SystemPulse", "À propos de SystemPulse", "Acerca de SystemPulse", "SystemPulseについて", "关于SystemPulse") }
+    static var about: String { tr("About DodoPulse", "DodoPulse Hakkında", "Über DodoPulse", "À propos de DodoPulse", "Acerca de DodoPulse", "DodoPulseについて", "关于DodoPulse") }
     static var quit: String { tr("Quit", "Çıkış", "Beenden", "Quitter", "Salir", "終了", "退出") }
     static var theme: String { tr("Theme", "Tema", "Thema", "Thème", "Tema", "テーマ", "主题") }
     static var power: String { tr("Power", "Güç", "Strom", "Alimentation", "Energía", "電源", "电源") }
@@ -1105,7 +1105,7 @@ class ContentView: NSView {
         let shadow = NSShadow()
         shadow.shadowColor = Theme.accent.withAlphaComponent(0.5)
         shadow.shadowBlurRadius = 8
-        "SystemPulse".draw(at: NSPoint(x: pad, y: y), withAttributes: [.font: NSFont.systemFont(ofSize: 16, weight: .bold), .foregroundColor: Theme.text, .shadow: shadow])
+        "DodoPulse".draw(at: NSPoint(x: pad, y: y), withAttributes: [.font: NSFont.systemFont(ofSize: 16, weight: .bold), .foregroundColor: Theme.text, .shadow: shadow])
         let up = formatUptime(m.uptime)
         up.draw(at: NSPoint(x: frame.width - pad - up.size(withAttributes: [.font: NSFont.monospacedSystemFont(ofSize: 11, weight: .regular)]).width, y: y + 2), withAttributes: [.font: NSFont.monospacedSystemFont(ofSize: 11, weight: .regular), .foregroundColor: Theme.text2])
         y -= gap
@@ -1535,15 +1535,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc func showAbout() {
         let alert = NSAlert()
-        alert.messageText = "SystemPulse Pro"
-        alert.informativeText = "A lightweight macOS menu bar app for real-time system monitoring.\n\n© 2026 Dr. Gorkem Cetin\n\nhttps://github.com/bluewave-labs/systempulse"
+        alert.messageText = "DodoPulse"
+        alert.informativeText = "A lightweight macOS menu bar app for real-time system monitoring.\n\n© 2026 Bluewave Labs\n\nhttps://github.com/bluewave-labs/dodopulse"
         alert.alertStyle = .informational
         alert.addButton(withTitle: "OK")
         alert.addButton(withTitle: "Open Repository")
 
         let response = alert.runModal()
         if response == .alertSecondButtonReturn {
-            if let url = URL(string: "https://github.com/bluewave-labs/systempulse") {
+            if let url = URL(string: "https://github.com/bluewave-labs/dodopulse") {
                 NSWorkspace.shared.open(url)
             }
         }

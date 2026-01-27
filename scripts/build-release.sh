@@ -2,7 +2,7 @@
 set -e
 
 # Configuration
-APP_NAME="SystemPulse"
+APP_NAME="DodoPulse"
 VERSION="${1:-1.0.0}"
 BUILD_DIR="build"
 APP_BUNDLE="$BUILD_DIR/$APP_NAME.app"
@@ -20,11 +20,11 @@ mkdir -p "$APP_BUNDLE/Contents/Resources"
 
 # Compile the Swift file as universal binary (arm64 + x86_64)
 echo "Compiling universal binary..."
-swiftc -O -o "$APP_BUNDLE/Contents/MacOS/$APP_NAME" SystemPulse.swift \
+swiftc -O -o "$APP_BUNDLE/Contents/MacOS/$APP_NAME" DodoPulse.swift \
     -target arm64-apple-macos12.0 \
     -framework Cocoa -framework IOKit -framework Metal
 
-swiftc -O -o "$APP_BUNDLE/Contents/MacOS/${APP_NAME}_x86" SystemPulse.swift \
+swiftc -O -o "$APP_BUNDLE/Contents/MacOS/${APP_NAME}_x86" DodoPulse.swift \
     -target x86_64-apple-macos12.0 \
     -framework Cocoa -framework IOKit -framework Metal
 
@@ -48,7 +48,7 @@ cat > "$APP_BUNDLE/Contents/Info.plist" << EOF
     <key>CFBundleDisplayName</key>
     <string>$APP_NAME</string>
     <key>CFBundleIdentifier</key>
-    <string>com.bluewave-labs.systempulse</string>
+    <string>com.bluewave-labs.dodopulse</string>
     <key>CFBundleVersion</key>
     <string>$VERSION</string>
     <key>CFBundleShortVersionString</key>

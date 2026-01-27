@@ -1,4 +1,4 @@
-# SystemPulse
+# DodoPulse
 
 🌍 **Disponible en 7 langues :** 🇺🇸 [English](README.md) | 🇹🇷 [Türkçe](README_TR.md) | 🇩🇪 [Deutsch](README_DE.md) | 🇫🇷 Français | 🇪🇸 [Español](README_ES.md) | 🇯🇵 [日本語](README_JA.md) | 🇨🇳 [中文](README_ZH.md)
 
@@ -34,63 +34,63 @@ Une application légère et native pour la barre de menus macOS qui affiche les 
 
 ## Installation
 
-> **À propos de la notarisation :** SystemPulse n'est actuellement pas notarisé par Apple. La notarisation est le processus de sécurité d'Apple qui analyse les applications à la recherche de logiciels malveillants avant leur distribution. Sans elle, macOS peut afficher des avertissements comme "l'app est endommagée" ou "ne peut pas être ouverte". Il est sûr de contourner cela pour les applications open source comme SystemPulse où vous pouvez inspecter le code vous-même. **Solution :** Exécutez `xattr -cr /Applications/SystemPulse.app` dans le Terminal, puis ouvrez l'app. La notarisation est prévue pour une version future.
+> **À propos de la notarisation :** DodoPulse n'est actuellement pas notarisé par Apple. La notarisation est le processus de sécurité d'Apple qui analyse les applications à la recherche de logiciels malveillants avant leur distribution. Sans elle, macOS peut afficher des avertissements comme "l'app est endommagée" ou "ne peut pas être ouverte". Il est sûr de contourner cela pour les applications open source comme DodoPulse où vous pouvez inspecter le code vous-même. **Solution :** Exécutez `xattr -cr /Applications/DodoPulse.app` dans le Terminal, puis ouvrez l'app. La notarisation est prévue pour une version future.
 
 ### Option 1 : Homebrew (recommandé)
 
 ```bash
-brew tap bluewave-labs/systempulse
-brew install --cask systempulse
+brew tap bluewave-labs/dodopulse
+brew install --cask dodopulse
 ```
 
-Au premier lancement, faites un clic droit sur l'app → Ouvrir → confirmer. Ou exécutez : `xattr -cr /Applications/SystemPulse.app`
+Au premier lancement, faites un clic droit sur l'app → Ouvrir → confirmer. Ou exécutez : `xattr -cr /Applications/DodoPulse.app`
 
 ### Option 2 : Télécharger le DMG
 
-1. Téléchargez le dernier DMG depuis [Releases](https://github.com/bluewave-labs/systempulse/releases)
-2. Ouvrez le DMG et glissez SystemPulse dans Applications
+1. Téléchargez le dernier DMG depuis [Releases](https://github.com/bluewave-labs/dodopulse/releases)
+2. Ouvrez le DMG et glissez DodoPulse dans Applications
 3. Au premier lancement, clic droit → Ouvrir → confirmer (voir la note sur la notarisation ci-dessus)
 
 ### Option 3 : Compiler depuis les sources
 
 1. Cloner le dépôt :
    ```bash
-   git clone https://github.com/bluewave-labs/systempulse.git
-   cd systempulse
+   git clone https://github.com/bluewave-labs/dodopulse.git
+   cd dodopulse
    ```
 
 2. Compiler l'application :
    ```bash
-   swiftc -O -o SystemPulse SystemPulse.swift -framework Cocoa -framework IOKit -framework Metal
+   swiftc -O -o DodoPulse DodoPulse.swift -framework Cocoa -framework IOKit -framework Metal
    ```
 
 3. Exécuter :
    ```bash
-   ./SystemPulse
+   ./DodoPulse
    ```
 
 ### Option 4 : Créer un bundle d'application (optionnel)
 
-Si vous voulez que SystemPulse apparaisse comme une vraie application macOS :
+Si vous voulez que DodoPulse apparaisse comme une vraie application macOS :
 
 1. Créer la structure de l'application :
    ```bash
-   mkdir -p SystemPulse.app/Contents/MacOS
-   cp SystemPulse SystemPulse.app/Contents/MacOS/
+   mkdir -p DodoPulse.app/Contents/MacOS
+   cp DodoPulse DodoPulse.app/Contents/MacOS/
    ```
 
-2. Créer `SystemPulse.app/Contents/Info.plist` :
+2. Créer `DodoPulse.app/Contents/Info.plist` :
    ```xml
    <?xml version="1.0" encoding="UTF-8"?>
    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
    <plist version="1.0">
    <dict>
        <key>CFBundleExecutable</key>
-       <string>SystemPulse</string>
+       <string>DodoPulse</string>
        <key>CFBundleIdentifier</key>
-       <string>com.bluewave.systempulse</string>
+       <string>com.bluewave.dodopulse</string>
        <key>CFBundleName</key>
-       <string>SystemPulse</string>
+       <string>DodoPulse</string>
        <key>CFBundleVersion</key>
        <string>1.0</string>
        <key>LSMinimumSystemVersion</key>
@@ -103,14 +103,14 @@ Si vous voulez que SystemPulse apparaisse comme une vraie application macOS :
 
 3. Déplacer vers Applications (optionnel) :
    ```bash
-   mv SystemPulse.app /Applications/
+   mv DodoPulse.app /Applications/
    ```
 
 ### Option 5 : Exécuter avec Automator
 
-Cette méthode permet à SystemPulse de fonctionner indépendamment du Terminal, donc il continue de fonctionner même après avoir fermé le Terminal.
+Cette méthode permet à DodoPulse de fonctionner indépendamment du Terminal, donc il continue de fonctionner même après avoir fermé le Terminal.
 
-1. Compilez d'abord SystemPulse (voir Option 1 ci-dessus)
+1. Compilez d'abord DodoPulse (voir Option 1 ci-dessus)
 
 2. Ouvrez **Automator** (recherchez-le dans Spotlight)
 
@@ -118,26 +118,26 @@ Cette méthode permet à SystemPulse de fonctionner indépendamment du Terminal,
 
 4. Dans la barre de recherche, tapez "Exécuter un script shell" et faites-le glisser dans la zone de workflow
 
-5. Remplacez le texte par défaut par le chemin complet vers votre binaire SystemPulse :
+5. Remplacez le texte par défaut par le chemin complet vers votre binaire DodoPulse :
    ```bash
-   /chemin/vers/systempulse/SystemPulse
+   /chemin/vers/dodopulse/DodoPulse
    ```
    Par exemple, si vous avez cloné dans votre dossier personnel :
    ```bash
-   ~/systempulse/SystemPulse
+   ~/dodopulse/DodoPulse
    ```
 
-6. Allez dans **Fichier** > **Enregistrer** et enregistrez-le sous "SystemPulse" dans votre dossier Applications
+6. Allez dans **Fichier** > **Enregistrer** et enregistrez-le sous "DodoPulse" dans votre dossier Applications
 
-7. Double-cliquez sur l'application Automator enregistrée pour exécuter SystemPulse
+7. Double-cliquez sur l'application Automator enregistrée pour exécuter DodoPulse
 
-**Astuce :** Vous pouvez ajouter SystemPulse à vos Ouverture pour le démarrer automatiquement au démarrage :
+**Astuce :** Vous pouvez ajouter DodoPulse à vos Ouverture pour le démarrer automatiquement au démarrage :
 1. Ouvrez **Réglages Système** > **Général** > **Ouverture**
-2. Cliquez sur **+** et sélectionnez votre application Automator SystemPulse
+2. Cliquez sur **+** et sélectionnez votre application Automator DodoPulse
 
 ## Utilisation
 
-Une fois lancé, SystemPulse apparaît dans votre barre de menus affichant l'utilisation CPU et mémoire.
+Une fois lancé, DodoPulse apparaît dans votre barre de menus affichant l'utilisation CPU et mémoire.
 
 - **Clic gauche** sur l'élément de la barre de menus pour ouvrir le panneau détaillé
 - **Clic droit** pour un menu rapide avec paramètres, sélection de langue et option Quitter
@@ -145,13 +145,13 @@ Une fois lancé, SystemPulse apparaît dans votre barre de menus affichant l'uti
 
 ### Changer de langue
 
-1. Faites un clic droit sur l'icône SystemPulse dans la barre de menus
+1. Faites un clic droit sur l'icône DodoPulse dans la barre de menus
 2. Sélectionnez **Langue** dans le menu
 3. Choisissez votre langue préférée dans le sous-menu
 
 ## Détails techniques
 
-SystemPulse utilise les APIs natives macOS pour des métriques précises :
+DodoPulse utilise les APIs natives macOS pour des métriques précises :
 
 - **CPU** : API Mach `host_processor_info()`
 - **Mémoire** : API Mach `host_statistics64()`
@@ -166,7 +166,7 @@ Les contributions sont les bienvenues ! N'hésitez pas à soumettre une pull req
 
 ### Ajouter des traductions
 
-SystemPulse permet d'ajouter facilement de nouvelles langues. Pour ajouter une nouvelle langue :
+DodoPulse permet d'ajouter facilement de nouvelles langues. Pour ajouter une nouvelle langue :
 
 1. Ajoutez un nouveau cas à l'enum `Language`
 2. Ajoutez les traductions pour toutes les chaînes dans le struct `L10n`
