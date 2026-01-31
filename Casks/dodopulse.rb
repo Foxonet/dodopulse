@@ -1,6 +1,6 @@
 cask "dodopulse" do
-  version "1.1.0"
-  sha256 "f812ee76ea6b17387c31c21a24dae92ada3cd16072659534379033aeba462050"
+  version "1.1.1"
+  sha256 "669812429370ba6e6fb3f0d8224bb59a18d29c6b50440483dc999fe47045d040"
 
   url "https://github.com/dodoapps/dodopulse/releases/download/v#{version}/DodoPulse-#{version}.dmg"
   name "DodoPulse"
