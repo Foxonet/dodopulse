@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+      http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+    <kcfgfile name=""/>
+    <group name="General">
+        <entry name="updateInterval" type="Int">
+            <default>1000</default>
+            <label>Update interval in milliseconds</label>
+        </entry>
+        <entry name="showCpu" type="Bool">
+            <default>true</default>
+            <label>Show CPU section</label>
+        </entry>
+        <entry name="showMemory" type="Bool">
+            <default>true</default>
+            <label>Show Memory section</label>
+        </entry>
+        <entry name="showNetwork" type="Bool">
+            <default>true</default>
+            <label>Show Network section</label>
+        </entry>
+        <entry name="showDisk" type="Bool">
+            <default>true</default>
+            <label>Show Disk section</label>
+        </entry>
+        <entry name="showGpu" type="Bool">
+            <default>true</default>
+            <label>Show GPU section</label>
+        </entry>
+        <entry name="showTemperature" type="Bool">
+            <default>true</default>
+            <label>Show Temperature</label>
+        </entry>
+        <entry name="compactMode" type="Bool">
+            <default>false</default>
+            <label>Compact mode for system tray</label>
+        </entry>
+    </group>
+</kcfg>

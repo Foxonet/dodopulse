@@ -1,0 +1,25 @@
+{
+    "KPlugin": {
+        "Id": "com.dodoapps.dodopulse",
+        "Name": "DodoPulse",
+        "Description": "A lightweight system monitor widget with beautiful mini graphs",
+        "Icon": "utilities-system-monitor",
+        "Authors": [
+            {
+                "Name": "DodoApps",
+                "Email": "contact@dodoapps.com"
+            }
+        ],
+        "Category": "System Information",
+        "License": "MIT",
+        "Version": "1.0.0",
+        "Website": "https://github.com/dodoapps/dodopulse",
+        "EnabledByDefault": true
+    },
+    "X-Plasma-API": "declarativeappletscript",
+    "X-Plasma-API-Minimum-Version": "6.0",
+    "X-Plasma-MainScript": "ui/main.qml",
+    "KPackageStructure": "Plasma/Applet",
+    "X-Plasma-NotificationArea": false,
+    "X-Plasma-Provides": []
+}
